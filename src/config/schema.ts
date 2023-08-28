@@ -24,20 +24,21 @@ const taskSchema = new mongoose.Schema({
         type : String,
         required : true
     },
-    dueDate: {
-        type : Date,
-        required : true
-    },
     status : {
         type: String,
-        enum: ['Not Started', 'In Progress', 'In Review', 'Done / Approved', 'Need revision/ Rejected']
+        default: "Not started",
+        enum: ['Not started', 'In progress', 'In review', 'Done / Approved', 'Need revision/ Rejected']
     },
     createdAt: {
         type: Date,
         default: Date.now
-    }
+    },
 },{
-    versionKey: false
+    versionKey: false,
+    timestamps: {
+        createdAt: false,
+        updatedAt: true
+    }    
 })
 
 export const taskModel = mongoose.model("tasks", taskSchema);

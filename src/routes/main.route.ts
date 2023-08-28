@@ -2,7 +2,7 @@ import express from 'express'
 import { Request, Response } from 'express'
 const routes = express.Router()
 import userRoutes from './user.route'
-import dataRoutes from './data.route'
+import taskRoutes from './task.route'
 
 routes.get('/', (req: Request, res : Response) => {
     res.status(200).json({
@@ -12,6 +12,6 @@ routes.get('/', (req: Request, res : Response) => {
 })
 
 routes.use('/', userRoutes)
-routes.use('/', dataRoutes)
+routes.use('/', taskRoutes)
 
 export default routes;
