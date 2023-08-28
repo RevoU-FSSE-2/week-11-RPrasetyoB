@@ -16,15 +16,15 @@ Adding the capability to connect databases to Express apps loading an appropriat
 ```
 {
   "username": "rpb",
-  "role": "admin",
-  "password": "admin123"  
+  "password": "manager123".
+  "role": "manager" 
 }
 ```
 ```
 {
   "username": "rpb2",
   "role": "employee",
-  "password": "maker123"  
+  "password": "employee123"  
 }
 ```
 
