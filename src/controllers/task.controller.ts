@@ -78,7 +78,7 @@ const taskUpdate = async (req: Request, res: Response) => {
                 });
             }
         } else if (role === "employee") {
-            const validStatus = ['Not Started', 'In Progress', 'In Review']
+            const validStatus = ['Not started', 'In progress', 'In review']
             if(validStatus.includes(status))
             return res.status(404).json({
                 success: true,
@@ -87,7 +87,7 @@ const taskUpdate = async (req: Request, res: Response) => {
             });
         } else {
             return res.status(400).json({
-              message: 'Status can only be updated to "Not Started", "In Progress", or "In Review"',
+              message: 'Status can only be updated to "Not started", "In progress", or "In review"',
             });
           }
     } catch (err) {
