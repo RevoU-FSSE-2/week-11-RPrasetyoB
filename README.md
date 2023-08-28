@@ -7,9 +7,10 @@ Adding the capability to connect databases to Express apps loading an appropriat
 - Mongoose / MongoDB
 - TypeScript
 - Postman
+- Swagger
 
 ## Project Flowchart <br>
-
+![milestone2 drawio (1)](https://github.com/RevoU-FSSE-2/week-11-RPrasetyoB/assets/129088807/0f662742-6e7f-450c-961a-6c3cd2248b47)
 
 ## Account for Testing
 ```
@@ -22,23 +23,12 @@ Adding the capability to connect databases to Express apps loading an appropriat
 ```
 {
   "username": "rpb2",
-  "role": "maker",
+  "role": "employee",
   "password": "maker123"  
 }
 ```
-```
-{
-  "username": "rpb3",
-  "role": "approver",
-  "password": "approver123"  
-}
-```
-## Endpoint Structure
-
-
 
 #### Download and import json file below to your postman: <br>
-
 
 
 
@@ -56,10 +46,10 @@ Adding the capability to connect databases to Express apps loading an appropriat
 
 ## Deployment
 ### Back End Rest API: <br>
-https://week10-rpb.up.railway.app/
+
 
 ### Swagger Documentation: <br>
-https://week10-rpb.up.railway.app/api-doc
+
 
 
 
