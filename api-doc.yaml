@@ -1,0 +1,151 @@
+openapi: 3.0.0
+info:
+  title: Auth di Express JS
+  version: 1.0.0
+  description: 'role based access API'
+servers:
+  - url: https://week10-rpb.up.railway.app
+    description: 'production server'
+  - url: http://localhost:3000
+    description: 'Development server'
+components:
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'Bearer with JWT Token'
+paths:
+  /v1/user:
+    get:
+      summary: get all user
+      parameters: []
+      responses:
+        '200':
+          description: Successful response
+  /v1/user/{userId}:
+    get:
+      summary: get 1 user
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+    patch:
+      summary: update user
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            example:
+              username: rpb5
+              password: alphaNumeric1
+              role: maker
+      responses:
+        '200':
+          description: Successful response
+    delete:
+      summary: delete user
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+  /v1/auth/login:
+    post:
+      summary: login
+      requestBody:
+        content:
+          application/json:
+            example:
+              username: rpb
+              password: admin123
+      responses:
+        '200':
+          description: Successful response
+  /v1/auth/register:
+    post:
+      summary: create user
+      requestBody:
+        content:
+          application/json:
+            example:
+              username: aaaaaa
+              password: aaa111
+              role: maker
+      responses:
+        '200':
+          description: Successful response
+  /v1/transfer:
+    post:
+      summary: create transfer
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            example:
+              sourceAccount: 120008
+              destinationAccount: 120009
+              amount: 90000
+      responses:
+        '200':
+          description: Successful response
+    get:
+      security:
+        - bearer_auth: []
+      summary: get all transfer
+      parameters: []
+      responses:
+        '200':
+          description: Successful response
+  /v1/transfer/{transferId}:
+    patch:
+      security:
+        - bearer_auth: []
+      summary: approve
+      parameters:
+        - name: transferId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            example:
+              status: pending
+      responses:
+        '200':
+          description: Successful response
+    delete:
+      security:
+        - bearer_auth: []
+      summary: soft delete
+      parameters:
+        - name: transferId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+  /:
+    get:
+      summary: home
+      responses:
+        '200':
+          description: Successful response
