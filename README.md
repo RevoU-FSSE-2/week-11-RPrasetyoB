@@ -36,14 +36,14 @@ Adding the capability to connect databases to Express apps loading an appropriat
 | Name                                | HTTP Method | Endpoint                                                   | Requirements                                                                                                        |
 | ----------------------------------- | ----------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
 | **Login User**                      | `POST`      | <b>/v1/auth/login</b>    | Request Body: `username: string, password: string`                                                                  |
-| **Register User**                   | `POST`      | [/v1/auth/register](https://week11-rpb.up.railway.app/) | Request Body: `username: string, password: string, role: string`                                                    |
-| **Get All User**                   | `GET`       | [/v1/users](https://week11-rpb.up.railway.app/)         |
-| **Get One User**                   | `GET`       | [/v1/users/:id](https://week11-rpb.up.railway.app/)         | `manager and employee role`  Request Params: `id: string`  
-| **Get All Task**               | `GET`       | [/v1/tasks](https://week11-rpb.up.railway.app/)     |  `manager and employee role`
-| **Get Task by ID**             | `GET`       | [/v1/tasks/:id](https://week11-rpb.up.railway.app/)  | `manager and employee role`  Request Params: `id: string`                                                                                        |
-| **Create Task**                 | `POST`      | [/v1/tasks](https://week11-rpb.up.railway.app/)      | `manager role` Request Body: `task: string`                                          |
-| **Update Task Status by ID**    | `PATCH`     | [/v1/tasks/:id](https://week11-rpb.up.railway.app/)  | `manager and employee role` Request Params: `id: string`  Request Body: `status: string`                                                                                   |
-| **Softdelete Task by ID**           | `DELETE`    | [/v1/tasks/:id](https://week11-rpb.up.railway.app/)  | `manager role`  Request Params: `id: string`                                                                                     |
+| **Register User**                   | `POST`      | <b>/v1/auth/register</b> | Request Body: `username: string, password: string, role: string`                                                    |
+| **Get All User**                   | `GET`       | <b>/v1/users</b>         |
+| **Get One User**                   | `GET`       | <b>/v1/users/:id</b>         | `manager and employee role`  Request Params: `id: string`  
+| **Get All Task**               | `GET`       | <b>/v1/tasks</b>     |  `manager and employee role`
+| **Get Task by ID**             | `GET`       | <b>/v1/tasks/:id</b>  | `manager and employee role`  Request Params: `id: string`                                                                                        |
+| **Create Task**                 | `POST`      | <b>/v1/tasks</b>      | `manager role` Request Body: `task: string`                                          |
+| **Update Task Status by ID**    | `PATCH`     | <b>/v1/tasks/:id</b>  | `manager and employee role` Request Params: `id: string`  Request Body: `status: string`                                                                                   |
+| **Softdelete Task by ID**           | `DELETE`    | <b>/v1/tasks/:id</b>  | `manager role`  Request Params: `id: string`                                                                                     |
 
 ## Deployment
 ### Back End Rest API: <br>
