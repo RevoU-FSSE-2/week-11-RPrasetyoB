@@ -42,8 +42,8 @@ Adding the capability to connect databases to Express apps loading an appropriat
 | **Get All Task**               | `GET`       | [/v1/tasks](https://week11-rpb.up.railway.app/)     |  `manager and employee role`
 | **Get Task by ID**             | `GET`       | [/v1/tasks/:id](https://week11-rpb.up.railway.app/)  | `manager and employee role`  Request Params: `id: number`                                                                                        |
 | **Create Task**                 | `POST`      | [/v1/tasks](https://week11-rpb.up.railway.app/)      | `manager role` Request Body: `source account: number, destination account: number, amount: number`                                          |
-| **Update Task Status by ID**    | `PATCH`     | [/v1/tasks/:id](https://week11-rpb.up.railway.app/)  | `manager and employee role`  Request Body: `status: string` `admin and approver role`                                                                                   |
-| **Softdelete Task by ID**           | `DELETE`    | [/v1/tasks/:id](https://week11-rpb.up.railway.app/)  | `manager role`  Request Params: `id: number` `admin role`                                                                                        |
+| **Update Task Status by ID**    | `PATCH`     | [/v1/tasks/:id](https://week11-rpb.up.railway.app/)  | `manager and employee role`  Request Body: `status: string`                                                                                   |
+| **Softdelete Task by ID**           | `DELETE`    | [/v1/tasks/:id](https://week11-rpb.up.railway.app/)  | `manager role`  Request Params: `id: number`                                                                                     |
 
 ## Deployment
 ### Back End Rest API: <br>
