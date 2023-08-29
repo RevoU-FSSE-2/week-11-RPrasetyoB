@@ -38,7 +38,7 @@ Project milestone 2. build a task management website application that integrates
 | **Login User**                      | `POST`      | <b>/v1/auth/login</b>    | Request Body: `username: string, password: string`                                                                  |
 | **Register User**                   | `POST`      | <b>/v1/auth/register</b> | Request Body: `username: string, password: string, role: string`                                                    |
 | **Get All User**                   | `GET`       | <b>/v1/users</b>         |
-| **Get One User**                   | `GET`       | <b>/v1/users/:id</b>         | `manager and employee role`  Request Params: `id: string`  
+| **Get One User**                   | `GET`       | <b>/v1/users/:id</b>         |  Request Params: `id: string`  
 | **Get All Task**               | `GET`       | <b>/v1/tasks</b>     |  `manager and employee role`
 | **Get Task by ID**             | `GET`       | <b>/v1/tasks/:id</b>  | `manager and employee role`  Request Params: `id: string`                                                                                        |
 | **Create Task**                 | `POST`      | <b>/v1/tasks</b>      | `manager role` Request Body: `task: string`                                          |
