@@ -35,7 +35,7 @@ Adding the capability to connect databases to Express apps loading an appropriat
 
 | Name                                | HTTP Method | Endpoint                                                   | Requirements                                                                                                        |
 | ----------------------------------- | ----------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| **Login User**                      | `POST`      | [/v1/auth/login]    | Request Body: `username: string, password: string`                                                                  |
+| **Login User**                      | `POST`      | <b>/v1/auth/login</b>    | Request Body: `username: string, password: string`                                                                  |
 | **Register User**                   | `POST`      | [/v1/auth/register](https://week11-rpb.up.railway.app/) | Request Body: `username: string, password: string, role: string`                                                    |
 | **Get All User**                   | `GET`       | [/v1/users](https://week11-rpb.up.railway.app/)         |
 | **Get One User**                   | `GET`       | [/v1/users/:id](https://week11-rpb.up.railway.app/)         | `manager and employee role`  Request Params: `id: string`  
