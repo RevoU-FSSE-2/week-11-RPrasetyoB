@@ -1,13 +1,14 @@
 # Restfull API
-Adding the capability to connect databases to Express apps loading an appropriate Node.js driver for the database in your app.
+Project milestone 2. build a task management website application that integrates with a database through a custom-built API, which implements CRUD (Create, Read, Update, Delete) functionality
 
-## Tools
+## Tools for this project
 - Node.JS
 - Express
 - Mongoose / MongoDB
 - TypeScript
 - Postman
 - Swagger
+- Bootstrap
 
 ## Project Flowchart <br>
 ![milestone2 drawio (1)](https://github.com/RevoU-FSSE-2/week-11-RPrasetyoB/assets/129088807/0f662742-6e7f-450c-961a-6c3cd2248b47)
@@ -34,23 +35,24 @@ Adding the capability to connect databases to Express apps loading an appropriat
 
 | Name                                | HTTP Method | Endpoint                                                   | Requirements                                                                                                        |
 | ----------------------------------- | ----------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| **Login User**                      | `POST`      | [/v1/auth/login](https://week10-rpb.up.railway.app/)    | Request Body: `username: string, password: string`                                                                  |
-| **Register User**                   | `POST`      | [/v1/auth/register](https://week10-rpb.up.railway.app/) | Request Body: `username: string, password: string, role: string`                                                    |
-| **Get All User**                   | `GET`       | [/v1/user](https://week10-rpb.up.railway.app/)         |
-| **Get One User**                   | `GET`       | [/v1/user/:id](https://week10-rpb.up.railway.app/)         | `admin and approver role`  Request Params: `id: number`  
-| **Get All Transfer**               | `GET`       | [/v1/transfer](https://week10-rpb.up.railway.app/)     |  `admin and approver role`
-| **Get Transfer by ID**             | `GET`       | [/v1/transfer/:id](https://week10-rpb.up.railway.app/)  | `admin and approver role`  Request Params: `id: number`                                                                                        |
-| **Create Transfer**                 | `POST`      | [/v1/transfer](https://week10-rpb.up.railway.app/)      | Request Body: `source account: number, destination account: number, amount: number`                                          |
-| **Update Transfer Status by ID**    | `PATCH`     | [/v1/transfer/:id](https://week10-rpb.up.railway.app/)  | `admin and approver role`  Request Body: `status: string` `admin and approver role`                                                                                   |
-| **Softdelete Transfer by ID**           | `DELETE`    | [/v1/transfer/:id](https://week10-rpb.up.railway.app/)  | `admin role`  Request Params: `id: number` `admin role`                                                                                        |
+| **Login User**                      | `POST`      | <b>/v1/auth/login</b>    | Request Body: `username: string, password: string`                                                                  |
+| **Register User**                   | `POST`      | <b>/v1/auth/register</b> | Request Body: `username: string, password: string, role: string`                                                    |
+| **Get All User**                   | `GET`       | <b>/v1/users</b>         |
+| **Get One User**                   | `GET`       | <b>/v1/users/:id</b>         |  Request Params: `id: string`  
+| **Get All Task**               | `GET`       | <b>/v1/tasks</b>     |  `manager and employee role`
+| **Get Task by ID**             | `GET`       | <b>/v1/tasks/:id</b>  | `manager and employee role`  Request Params: `id: string`                                                                                        |
+| **Create Task**                 | `POST`      | <b>/v1/tasks</b>      | `manager role` Request Body: `task: string`                                          |
+| **Update Task Status by ID**    | `PATCH`     | <b>/v1/tasks/:id</b>  | `manager and employee role` Request Params: `id: string`  Request Body: `status: string`                                                                                   |
+| **Softdelete Task by ID**           | `DELETE`    | <b>/v1/tasks/:id</b>  | `manager role`  Request Params: `id: string`                                                                                     |
 
 ## Deployment
 ### Back End Rest API: <br>
-
+https://week11-rpb.up.railway.app
 
 ### Swagger Documentation: <br>
+https://week11-rpb.up.railway.app/api-doc
 
-
+### Front End: <br>
 
 
 
