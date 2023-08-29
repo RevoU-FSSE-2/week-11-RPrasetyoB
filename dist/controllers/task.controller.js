@@ -44,12 +44,12 @@ const getOneTask = async (req, res) => {
 };
 const createTask = async (req, res) => {
     try {
-        const { sourceAccount, destinationAccount, amount } = req.body;
-        const newUser = await schema_1.taskModel.create({ sourceAccount, destinationAccount, amount, status: "pending" });
+        const { task } = req.body;
+        const newTask = await schema_1.taskModel.create({ task, status: "Not started", createdAt: Date.now });
         return res.status(200).json({
             success: true,
-            message: "registration success",
-            data: newUser
+            message: "Task registration success",
+            data: newTask
         });
     }
     catch (error) {

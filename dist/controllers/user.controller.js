@@ -60,12 +60,12 @@ const regUser = async (req, res) => {
                 message: "Username cannot be empty"
             });
         }
-        if (role !== "approver" && role !== "maker") {
-            return res.status(400).json({
-                success: false,
-                message: "Possible role only maker and approver"
-            });
-        }
+        // if (role !== "approver" && role !== "maker") {
+        //   return res.status(400).json({
+        //     success: false,
+        //     message: "Possible role only maker and approver"
+        //   });
+        // }
         if (password.length < 8) {
             return res.status(400).json({
                 success: false,
