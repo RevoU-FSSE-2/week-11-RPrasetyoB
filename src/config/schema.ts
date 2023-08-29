@@ -6,13 +6,13 @@ const userSchema = new mongoose.Schema({
       required: true,
       unique: true
     },
-    role: {
-        type: String,
-    },
     password: {
         type: String,
         required: true,
     },
+    role: {
+        type: String,
+    }
   },{
     versionKey: false
   });
