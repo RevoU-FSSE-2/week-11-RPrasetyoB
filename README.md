@@ -34,23 +34,24 @@ Adding the capability to connect databases to Express apps loading an appropriat
 
 | Name                                | HTTP Method | Endpoint                                                   | Requirements                                                                                                        |
 | ----------------------------------- | ----------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| **Login User**                      | `POST`      | [/v1/auth/login](https://week10-rpb.up.railway.app/)    | Request Body: `username: string, password: string`                                                                  |
-| **Register User**                   | `POST`      | [/v1/auth/register](https://week10-rpb.up.railway.app/) | Request Body: `username: string, password: string, role: string`                                                    |
-| **Get All User**                   | `GET`       | [/v1/user](https://week10-rpb.up.railway.app/)         |
-| **Get One User**                   | `GET`       | [/v1/user/:id](https://week10-rpb.up.railway.app/)         | `admin and approver role`  Request Params: `id: number`  
-| **Get All Transfer**               | `GET`       | [/v1/transfer](https://week10-rpb.up.railway.app/)     |  `admin and approver role`
-| **Get Transfer by ID**             | `GET`       | [/v1/transfer/:id](https://week10-rpb.up.railway.app/)  | `admin and approver role`  Request Params: `id: number`                                                                                        |
-| **Create Transfer**                 | `POST`      | [/v1/transfer](https://week10-rpb.up.railway.app/)      | Request Body: `source account: number, destination account: number, amount: number`                                          |
-| **Update Transfer Status by ID**    | `PATCH`     | [/v1/transfer/:id](https://week10-rpb.up.railway.app/)  | `admin and approver role`  Request Body: `status: string` `admin and approver role`                                                                                   |
-| **Softdelete Transfer by ID**           | `DELETE`    | [/v1/transfer/:id](https://week10-rpb.up.railway.app/)  | `admin role`  Request Params: `id: number` `admin role`                                                                                        |
+| **Login User**                      | `POST`      | [/v1/auth/login](https://week11-rpb.up.railway.app/)    | Request Body: `username: string, password: string`                                                                  |
+| **Register User**                   | `POST`      | [/v1/auth/register](https://week11-rpb.up.railway.app/) | Request Body: `username: string, password: string, role: string`                                                    |
+| **Get All User**                   | `GET`       | [/v1/user](https://week11-rpb.up.railway.app/)         |
+| **Get One User**                   | `GET`       | [/v1/user/:id](https://week11-rpb.up.railway.app/)         | `manager and employee role`  Request Params: `id: number`  
+| **Get All Task**               | `GET`       | [/v1/transfer](https://week11-rpb.up.railway.app/)     |  `manager and employee role`
+| **Get Task by ID**             | `GET`       | [/v1/transfer/:id](https://week11-rpb.up.railway.app/)  | `manager and employee role`  Request Params: `id: number`                                                                                        |
+| **Create Task**                 | `POST`      | [/v1/transfer](https://week11-rpb.up.railway.app/)      | `manager role` Request Body: `source account: number, destination account: number, amount: number`                                          |
+| **Update Task Status by ID**    | `PATCH`     | [/v1/transfer/:id](https://week11-rpb.up.railway.app/)  | `manager and employee role`  Request Body: `status: string` `admin and approver role`                                                                                   |
+| **Softdelete Task by ID**           | `DELETE`    | [/v1/transfer/:id](https://week11-rpb.up.railway.app/)  | `manager role`  Request Params: `id: number` `admin role`                                                                                        |
 
 ## Deployment
 ### Back End Rest API: <br>
-
+https://week11-rpb.up.railway.app
 
 ### Swagger Documentation: <br>
+https://week11-rpb.up.railway.app/api-doc
 
-
+### Front End: <br>
 
 
 
