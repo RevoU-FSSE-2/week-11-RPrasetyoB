@@ -175,10 +175,10 @@ const updateUser = async (req, res) => {
                 message: "Username cannot be empty"
             });
         }
-        if (role !== "approver" && role !== "maker") {
+        if (role !== "employee") {
             return res.status(400).json({
                 success: false,
-                message: "Possible role only maker and approver"
+                message: "Possible role only Employee"
             });
         }
         if (password.length < 8) {
