@@ -1,7 +1,7 @@
 # Restfull API
-Adding the capability to connect databases to Express apps loading an appropriate Node.js driver for the database in your app.
+Project milestone 2. build a task management website application that integrates with a database through a custom-built API, which implements CRUD (Create, Read, Update, Delete) functionality
 
-## Tools
+## Tools for this project
 - Node.JS
 - Express
 - Mongoose / MongoDB
