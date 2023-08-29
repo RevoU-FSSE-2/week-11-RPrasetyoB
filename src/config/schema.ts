@@ -29,16 +29,11 @@ const taskSchema = new mongoose.Schema({
         default: "Not started",
         enum: ['Not started', 'In progress', 'In review', 'Done / Approved', 'Need revision/ Rejected']
     },
-    createdAt: {
-        type: Date,
-        default: Date.now
-    },
 },{
-    versionKey: false,
     timestamps: {
-        createdAt: false,
-        updatedAt: true
-    }    
+        currentTime: () => new Date().setUTCHours(0, 0, 0, 0)
+    },
+    versionKey: false
 })
 
 export const taskModel = mongoose.model("tasks", taskSchema);

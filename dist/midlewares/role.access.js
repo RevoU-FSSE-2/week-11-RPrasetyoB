@@ -14,7 +14,8 @@ const authRole = async (req, res, next) => {
         const token = authHeader.split(' ')[1];
         try {
             const decodedToken = jsonwebtoken_1.default.verify(token, jwt_1.JWT_Sign);
-            if (decodedToken.role === 'admin' || decodedToken.role === 'approver') {
+            console.log(decodedToken);
+            if (decodedToken.role === 'manager' || decodedToken.role === 'employee') {
                 next();
             }
             else {
@@ -30,7 +31,7 @@ const authRole = async (req, res, next) => {
         }
     }
 };
-const adminAuth = async (req, res, next) => {
+const managerAuth = async (req, res, next) => {
     const authHeader = req.headers.authorization;
     if (!authHeader) {
         res.status(401).json({ error: 'Unauthorized' });
@@ -39,7 +40,7 @@ const adminAuth = async (req, res, next) => {
         const token = authHeader.split(' ')[1];
         try {
             const decodedToken = jsonwebtoken_1.default.verify(token, jwt_1.JWT_Sign);
-            if (decodedToken.role === 'admin') {
+            if (decodedToken.role === 'manager') {
                 next();
             }
             else {
@@ -55,5 +56,5 @@ const adminAuth = async (req, res, next) => {
         }
     }
 };
-const authMiddleware = { authRole, adminAuth };
+const authMiddleware = { authRole, managerAuth };
 exports.default = authMiddleware;

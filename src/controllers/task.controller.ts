@@ -2,14 +2,15 @@ import { Request, Response, json } from 'express';
 import { taskModel } from '../config/schema';
 
 
+
 const getAllTask = async (req: Request, res: Response) => {
     try {
-        const user = await taskModel.find({ isDeleted: { $exists: false } })
+        const task = await taskModel.find({ isDeleted: { $exists: false } })
      
         return res.status(200).json({
           success: true,
           message: "success get all transfer's datas",
-          user: user
+          user: task
         });
     } catch (error) {
         console.log(error);
@@ -23,8 +24,8 @@ const getAllTask = async (req: Request, res: Response) => {
 const getOneTask = async (req: Request, res: Response) => {
     try {
       const { id } = req.params
-      const transfer = await taskModel.findById(id);
-      if(!transfer) {
+      const task = await taskModel.findById(id);
+      if(!task) {
         return res.status(404).json({
           message: "Transfer data not found"
         })
@@ -33,7 +34,7 @@ const getOneTask = async (req: Request, res: Response) => {
       return res.status(200).json({
         success: true,
         message: "success get transfer data",
-        user: transfer,
+        user: task,
       });
     } catch (error) {
       console.log(error);
@@ -48,7 +49,7 @@ const createTask = async (req: Request, res: Response) => {
     try {
         const { task }= req.body
 
-        const newTask = await taskModel.create({ task, status : "Not started", createdAt: Date.now  })
+        const newTask = await taskModel.create({ task })
         return res.status(200).json({
             success: true,
             message: "Task registration success",
@@ -60,61 +61,71 @@ const createTask = async (req: Request, res: Response) => {
     }
 }
 
-const taskUpdate = async (req: Request, res: Response) => {
+const updateTask = async (req: Request, res: Response) => {
     try {
-        const { id } = req.params
-        const { status, role } = req.body;  
-        const updatedStatus = await taskModel.updateOne({ _id: id }, { status: status });
-        
+      const { id } = req.params;
+      const { status, role } = req.body;
+      let validStatus: string[];
 
-        if (role === "admin") {
-            if (updatedStatus) {
-                return res.status(200).json({
-                    success: true,
-                    message: 'Successfully updated status',
-                    data: {
-                    status: status                
-                    }
-                });
-            }
-        } else if (role === "employee") {
-            const validStatus = ['Not started', 'In progress', 'In review']
-            if(validStatus.includes(status))
-            return res.status(404).json({
-                success: true,
-                message: 'Successfully updated status',
-                status: status
-            });
-        } else {
-            return res.status(400).json({
-              message: 'Status can only be updated to "Not started", "In progress", or "In review"',
-            });
-          }
-    } catch (err) {
-        console.error('Error updating user:', err);
-        return res.status(500).json({
-            success: false,
-            message: 'An error occurred while updating the status'
+      console.log('Received role:', role)
+  
+      if (role === 'manager') {
+        validStatus = ['Not started', 'In progress', 'In review', 'Done / Approved', 'Need revision/ Rejected'];
+      } else if (role === 'employee') {
+        validStatus = ['Not started', 'In progress', 'In review'];
+      } else {
+        return res.status(400).json({
+          message: 'Invalid role provided'
         });
+      }
+  
+      if (validStatus.includes(status)) {
+        const updatedStatus = await taskModel.updateOne({ _id: id }, { status: status });
+  
+        if (updatedStatus.modifiedCount > 0) {
+          return res.status(200).json({
+            success: true,
+            message: 'Successfully updated status',
+            data: {
+              status: status
+            }
+          });
+        } else {
+          return res.status(404).json({
+            success: false,
+            message: 'No update status found for the provided ID'
+          });
+        }
+      } else {
+        return res.status(400).json({
+          message: `Status can only be updated to: ${validStatus.join(', ')}`
+        });
+      }
+    } catch (err) {
+      console.error('Error updating status:', err);
+      return res.status(500).json({
+        success: false,
+        message: 'An error occurred while updating the status'
+      });
     }
-}
+  };
 
 export const deleteTask = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
 
-        const deletedTransfer = await taskModel.findByIdAndUpdate(id,{ $set: { isDeleted: true }}, { new: true });
+        const deletedTask = await taskModel.findByIdAndUpdate(id,{ $set: { isDeleted: true }}, { new: true });
 
-        if (deletedTransfer) {
+        if (deletedTask) {
             return res.status(200).json({
                 success: true,
-                message: 'Transfer soft deleted successfully',
-                data: deletedTransfer
+                message: 'Task deleted successfully',
+                data: deletedTask
             });
         } else {
             return res.status(404).json({
                 success: false,
-                message: 'Transfer data not found'
+                message: 'Task not found'
             });
         }
     } catch (err) {
@@ -127,5 +138,5 @@ export const deleteTask = async (req: Request, res: Response) => {
 };
 
 
-const taskController = { createTask, getAllTask, taskUpdate, getOneTask, deleteTask }
+const taskController = { createTask, getAllTask, updateTask, getOneTask, deleteTask }
 export default taskController

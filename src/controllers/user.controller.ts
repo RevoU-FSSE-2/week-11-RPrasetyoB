@@ -180,7 +180,7 @@ export const updateUser = async (req: Request, res: Response) => {
     
     const userId = req.params.id;
     const updates = req.body;
-    const { username, password, role } = req.body;
+    const { username, password, role } = updates;
     
     if (!username) {
        return res.status(400).json({
@@ -188,6 +188,15 @@ export const updateUser = async (req: Request, res: Response) => {
          message: "Username cannot be empty"
        });
      }
+    
+    const existingUser = await userModel.findOne({ username });
+
+    if (existingUser) {
+      return res.status(409).json({
+        success: false,
+        message: "Username already exists"
+      });
+    }
 
     if (role !== "employee") {
       return res.status(400).json({
@@ -223,8 +232,8 @@ export const updateUser = async (req: Request, res: Response) => {
         message: 'User updated successfully',
         data: {
           _id: userId,
-          username: username, role,
-          passwordUpdated: !!updates.password
+          username, role,
+          passwordUpdated: !!password
         }
       });
     } else {

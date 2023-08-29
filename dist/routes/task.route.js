@@ -9,7 +9,7 @@ const task_controller_1 = __importDefault(require("../controllers/task.controlle
 const taskRoutes = express_1.default.Router();
 taskRoutes.get('/v1/tasks', role_access_1.default.authRole, task_controller_1.default.getAllTask);
 taskRoutes.get('/v1/tasks/:id', role_access_1.default.authRole, task_controller_1.default.getOneTask);
-taskRoutes.post('/v1/tasks', role_access_1.default.adminAuth, task_controller_1.default.createTask);
-taskRoutes.patch('/v1/tasks/:id', role_access_1.default.authRole, task_controller_1.default.taskUpdate);
-taskRoutes.delete('/v1/tasks/:id', role_access_1.default.adminAuth, task_controller_1.default.deleteTask);
+taskRoutes.post('/v1/tasks', role_access_1.default.managerAuth, task_controller_1.default.createTask);
+taskRoutes.patch('/v1/tasks/:id', role_access_1.default.authRole, task_controller_1.default.updateTask);
+taskRoutes.delete('/v1/tasks/:id', role_access_1.default.managerAuth, task_controller_1.default.deleteTask);
 exports.default = taskRoutes;

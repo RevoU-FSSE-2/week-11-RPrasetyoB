@@ -168,11 +168,18 @@ const updateUser = async (req, res) => {
     try {
         const userId = req.params.id;
         const updates = req.body;
-        const { username, password, role } = req.body;
+        const { username, password, role } = updates;
         if (!username) {
             return res.status(400).json({
                 success: false,
                 message: "Username cannot be empty"
+            });
+        }
+        const existingUser = await schema_1.userModel.findOne({ username });
+        if (existingUser) {
+            return res.status(409).json({
+                success: false,
+                message: "Username already exists"
             });
         }
         if (role !== "employee") {
@@ -204,8 +211,8 @@ const updateUser = async (req, res) => {
                 message: 'User updated successfully',
                 data: {
                     _id: userId,
-                    username: username, role,
-                    passwordUpdated: !!updates.password
+                    username, role,
+                    passwordUpdated: !!password
                 }
             });
         }

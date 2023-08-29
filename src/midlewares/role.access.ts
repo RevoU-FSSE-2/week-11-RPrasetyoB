@@ -9,12 +9,11 @@ const authRole = async (req: Request, res: Response, next: NextFunction) => {
     if (!authHeader) {
       res.status(401).json({ error: 'Unauthorized' })
     } else {
-      const token = authHeader.split(' ')[1]
-      
+      const token = authHeader.split(' ')[1]      
       try {
         const decodedToken : any  = jwt.verify(token, JWT_Sign)
-    
-        if (decodedToken.role === 'admin' || decodedToken.role === 'approver') {
+        console.log(decodedToken)
+        if (decodedToken.role === 'manager' || decodedToken.role === 'employee') {
           next()
         } else {
           res.status(401).json({ error: 'Unauthorized' })
@@ -29,7 +28,7 @@ const authRole = async (req: Request, res: Response, next: NextFunction) => {
     }
   }
 
-const adminAuth = async (req: Request, res: Response, next: NextFunction) => {
+const managerAuth = async (req: Request, res: Response, next: NextFunction) => {
     const authHeader = req.headers.authorization
     
     if (!authHeader) {
@@ -38,9 +37,8 @@ const adminAuth = async (req: Request, res: Response, next: NextFunction) => {
       const token = authHeader.split(' ')[1]
       
       try {
-        const decodedToken : any  = jwt.verify(token, JWT_Sign)
-    
-        if (decodedToken.role === 'admin') {
+        const decodedToken : any  = jwt.verify(token, JWT_Sign)    
+        if (decodedToken.role === 'manager') {
           next()
         } else {
           res.status(401).json({ error: 'Unauthorized' })
@@ -56,5 +54,5 @@ const adminAuth = async (req: Request, res: Response, next: NextFunction) => {
   }
 
 
-const authMiddleware  = { authRole, adminAuth }
+const authMiddleware  = { authRole, managerAuth }
 export default authMiddleware
