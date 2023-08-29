@@ -86,7 +86,7 @@ const regUser = async (req, res) => {
             });
         }
         const hashedPass = await bcrypt_1.default.hash(password, 10);
-        const newUser = await schema_1.userModel.create({ username, role, password: hashedPass });
+        const newUser = await schema_1.userModel.create({ username, password: hashedPass, role });
         return res.status(200).json({
             success: true,
             message: "Registration success",

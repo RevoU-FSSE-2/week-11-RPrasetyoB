@@ -93,7 +93,7 @@ const getOneUser = async (req: Request, res: Response) => {
   
       const hashedPass = await bcrypt.hash(password, 10);
   
-      const newUser = await userModel.create({ username, role, password: hashedPass });
+      const newUser = await userModel.create({ username, password: hashedPass, role });
   
       return res.status(200).json({
         success: true,
