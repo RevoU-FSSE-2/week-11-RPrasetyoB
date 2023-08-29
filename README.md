@@ -8,6 +8,7 @@ Adding the capability to connect databases to Express apps loading an appropriat
 - TypeScript
 - Postman
 - Swagger
+- Bootstrap
 
 ## Project Flowchart <br>
 ![milestone2 drawio (1)](https://github.com/RevoU-FSSE-2/week-11-RPrasetyoB/assets/129088807/0f662742-6e7f-450c-961a-6c3cd2248b47)
