@@ -32,6 +32,9 @@ const taskSchema = new mongoose_1.default.Schema({
         default: "Not started",
         enum: ['Not started', 'In progress', 'In review', 'Done / Approved', 'Need revision/ Rejected']
     },
+    isDeleted: {
+        type: Boolean
+    }
 }, {
     timestamps: {
         currentTime: () => new Date().setUTCHours(0, 0, 0, 0)

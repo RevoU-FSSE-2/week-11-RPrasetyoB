@@ -1,18 +1,20 @@
 import express, { Request, Response, NextFunction} from 'express'
 import { JWT_Sign } from '../config/jwt'
 import jwt from "jsonwebtoken"
-import taskController from '../controllers/task.controller'
+import { log } from 'console'
 
-const authRole = async (req: Request, res: Response, next: NextFunction) => {
+export const authRole = async (req: Request, res: Response, next: NextFunction) => {
     const authHeader = req.headers.authorization
+    
     
     if (!authHeader) {
       res.status(401).json({ error: 'Unauthorized' })
     } else {
       const token = authHeader.split(' ')[1]      
       try {
-        const decodedToken : any  = jwt.verify(token, JWT_Sign)
-        console.log(decodedToken)
+        const decodedToken : any  = jwt.verify(token, JWT_Sign) as {userId: string; role: string} ;
+        (req as any).user = decodedToken;
+
         if (decodedToken.role === 'manager' || decodedToken.role === 'employee') {
           next()
         } else {

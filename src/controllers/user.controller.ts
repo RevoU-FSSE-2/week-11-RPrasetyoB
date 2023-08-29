@@ -3,7 +3,7 @@ import { userModel } from '../config/schema';
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken';
 import { JWT_Sign } from '../config/jwt';
-import { log } from 'console';
+
 
 //get all user
 const getAllUsers = async (req: Request, res: Response) => {
