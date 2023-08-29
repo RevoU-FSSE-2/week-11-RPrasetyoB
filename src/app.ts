@@ -15,18 +15,18 @@ app.use(cors());
 app.use(express.json());
 app.use(routes);
 
-// const openApiPath = 'api-doc.yaml';
-// const readApiFile = fs.readFileSync(openApiPath, 'utf8');
-// const swaggerDoc = yaml.parse(readApiFile) as object;
+const openApiPath = 'api-doc.yaml';
+const readApiFile = fs.readFileSync(openApiPath, 'utf8');
+const swaggerDoc = yaml.parse(readApiFile) as object;
 
-// app.use('/api-doc', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
+app.use('/api-doc', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 
-// app.use(
-//   OpenApiValidator.middleware({
-//     apiSpec: openApiPath,
-//     validateRequests: true
-//   }),
-// );
+app.use(
+  OpenApiValidator.middleware({
+    apiSpec: openApiPath,
+    validateRequests: true
+  }),
+);
 
 db.on('error', console.error.bind(console, 'connection error: '));
 db.once('open', function () {
