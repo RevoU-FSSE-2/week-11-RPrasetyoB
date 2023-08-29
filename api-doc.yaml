@@ -1,0 +1,181 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: milestone2
+paths:
+  /v1/auth/login:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Successful response
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+  /v1/auth/register:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+                role:
+                  type: string
+      responses:
+        '200':
+          description: Successful response
+        '400':
+          description: Bad Request
+  /v1/users:
+    get:
+      responses:
+        '200':
+          description: Successful response
+        '500':
+          description: Internal Server Error
+  /v1/users/{userId}:
+    get:
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+        '404':
+          description: User not found
+        '500':
+          description: Internal Server Error
+    delete:
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+        '404':
+          description: User not found
+        '500':
+          description: Internal Server Error
+    patch:
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+                role:
+                  type: string
+      responses:
+        '200':
+          description: Successful response
+        '404':
+          description: User not found
+        '500':
+          description: Internal Server Error
+  /v1/tasks:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                task:
+                  type: string
+      responses:
+        '200':
+          description: Successful response
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
+    get:
+      responses:
+        '200':
+          description: Successful response
+        '500':
+          description: Internal Server Error
+  /v1/tasks/{taskId}:
+    get:
+      parameters:
+        - name: taskId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+        '404':
+          description: Task not found
+        '500':
+          description: Internal Server Error
+    patch:
+      parameters:
+        - name: taskId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+      responses:
+        '200':
+          description: Successful response
+        '400':
+          description: Bad Request
+        '404':
+          description: Task not found
+        '500':
+          description: Internal Server Error
+    delete:
+      parameters:
+        - name: taskId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+        '404':
+          description: Task not found
+        '500':
+          description: Internal Server Error
