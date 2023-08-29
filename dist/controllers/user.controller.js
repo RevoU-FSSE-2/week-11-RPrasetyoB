@@ -169,11 +169,6 @@ const updateUser = async (req, res) => {
         const userId = req.params.id;
         const updates = req.body;
         const { username, password, role } = req.body;
-        if (updates.password) {
-            updates.password = await bcrypt_1.default.hash(updates.password, 10);
-        }
-        const updatedUser = await schema_1.userModel.findByIdAndUpdate(userId, updates, { new: true });
-        console.log(username);
         if (!username) {
             return res.status(400).json({
                 success: false,
@@ -198,6 +193,11 @@ const updateUser = async (req, res) => {
                 message: "Password must contain both alphabetic and numeric characters"
             });
         }
+        if (updates.password) {
+            updates.password = await bcrypt_1.default.hash(updates.password, 10);
+        }
+        const updatedUser = await schema_1.userModel.findByIdAndUpdate(userId, updates, { new: true });
+        console.log(username);
         if (updatedUser) {
             return res.status(200).json({
                 success: true,
