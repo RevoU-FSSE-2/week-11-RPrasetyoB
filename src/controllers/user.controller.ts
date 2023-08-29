@@ -61,7 +61,7 @@ const getOneUser = async (req: Request, res: Response) => {
         });
       }
   
-      if (role !== "approver" && role !== "maker") {
+      if (role !== "employee") {
         return res.status(400).json({
           success: false,
           message: "Possible role only Employee"
