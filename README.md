@@ -10,9 +10,6 @@ Project milestone 2. build a task management website application that integrates
 - Swagger
 - Bootstrap
 
-## Project Flowchart <br>
-![milestone2 drawio (1)](https://github.com/RevoU-FSSE-2/week-11-RPrasetyoB/assets/129088807/0f662742-6e7f-450c-961a-6c3cd2248b47)
-
 ## Account for Testing
 ```
 {
@@ -29,8 +26,35 @@ Project milestone 2. build a task management website application that integrates
 }
 ```
 
-#### Download and import json file below to your postman: <br>
+## Project Flowchart <br>
+![milestone2 drawio (1)](https://github.com/RevoU-FSSE-2/week-11-RPrasetyoB/assets/129088807/0f662742-6e7f-450c-961a-6c3cd2248b47)
 
+## Request and Response example
+**Login User**
+- Request :
+```
+{
+    "username" : "rpb6",
+    "password" : "employee123",
+    "role" : "employee"
+}
+```
+- Response :
+```
+{
+    "success": true,
+    "message": "Registration success",
+    "data": {
+        "username": "rpb6",
+        "password": "$2b$10$o.48UV4ioacSdVsOc6GJj.ZVSS17yJDhgXFwXinDNAGCc7WrE.xle",
+        "role": "employee",
+        "_id": "64ef6456b1de5bf3cfed5158"
+    }
+}
+```
+
+#### Download and import json file below to your postman: <br>
+https://drive.google.com/file/d/15GdqV8NM2q2T4VFQ0DdNHP9om45ijLpY/view?usp=sharing
 
 
 | Name                                | HTTP Method | Endpoint                                                   | Requirements                                                                                                        |
