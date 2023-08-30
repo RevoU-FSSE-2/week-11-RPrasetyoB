@@ -50,61 +50,59 @@ const getOneUser = async (req: Request, res: Response) => {
 };
 
   //create user
-  const regUser = async (req : Request, res: Response) => {
-    try {
-      const { username, password, role } = req.body;
-  
-      if (!username) {
-        return res.status(400).json({
-          success: false,
-          message: "Username cannot be empty"
-        });
-      }
-  
-      if (role !== "employee") {
-        return res.status(400).json({
-          success: false,
-          message: "Possible role only Employee"
-        });
-      }
-  
-      if (password.length < 8) {
-        return res.status(400).json({
-          success: false,
-          message: "Password must be at least 8 characters long"
-        });
-      }
-
-      if (!/(?=.*[a-zA-Z])(?=.*[0-9])/.test(password)) {
-        return res.status(400).json({
-            success: false,
-            message: "Password must contain both alphabetic and numeric characters"
-        });
-    }
-  
-      const existingUser = await userModel.findOne({ username });
-  
-      if (existingUser) {
-        return res.status(409).json({
-          success: false,
-          message: "Username already exists"
-        });
-      }
-  
-      const hashedPass = await bcrypt.hash(password, 10);
-  
-      const newUser = await userModel.create({ username, password: hashedPass, role });
-  
-      return res.status(200).json({
-        success: true,
-        message: "Registration success",
-        data: newUser
+const regUser = async (req : Request, res: Response) => {
+  try {
+    const { username, password, role } = req.body;
+    if (!username) {
+      return res.status(400).json({
+        success: false,
+        message: "Username cannot be empty"
       });
-    } catch (error) {
-      console.log(error);
-      return res.status(500).json({ message: "Internal server error" });
     }
-  };
+  
+    if (role !== "employee") {
+      return res.status(400).json({
+        success: false,
+        message: "Possible role only Employee"
+      });
+    }
+  
+    if (password.length < 8) {
+      return res.status(400).json({
+        success: false,
+        message: "Password must be at least 8 characters long"
+      });
+    }
+
+    if (!/(?=.*[a-zA-Z])(?=.*[0-9])/.test(password)) {
+      return res.status(400).json({
+          success: false,
+          message: "Password must contain both alphabetic and numeric characters"
+      });
+  }
+  
+    const existingUser = await userModel.findOne({ username });
+  
+    if (existingUser) {
+      return res.status(409).json({
+        success: false,
+        message: "Username already exists"
+      });
+    }
+  
+    const hashedPass = await bcrypt.hash(password, 10);
+
+    const newUser = await userModel.create({ username, password: hashedPass, role });
+    return res.status(200).json({
+      success: true,
+      message: "Registration success",
+      data: newUser
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
 
 // Login user
 const loginUser = async (req: Request, res: Response) => {
@@ -148,7 +146,7 @@ const loginUser = async (req: Request, res: Response) => {
 
 
 // Delete user
-export const deleteUser = async (req: Request, res: Response) => {
+const deleteUser = async (req: Request, res: Response) => {
   try {
     const id = req.params.id
     const deletedUser = await userModel.findByIdAndDelete(id);
@@ -175,7 +173,7 @@ export const deleteUser = async (req: Request, res: Response) => {
 };
 
 //update user
-export const updateUser = async (req: Request, res: Response) => {
+const updateUser = async (req: Request, res: Response) => {
   try {
     
     const userId = req.params.id;
@@ -253,5 +251,5 @@ export const updateUser = async (req: Request, res: Response) => {
 };
 
 
-const userController = { getAllUsers, getOneUser, regUser, loginUser, deleteUser, updateUser }
-export default userController
+export { getAllUsers, getOneUser, regUser, loginUser, deleteUser, updateUser }
+

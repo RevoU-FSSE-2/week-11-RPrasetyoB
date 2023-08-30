@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateUser = exports.deleteUser = void 0;
+exports.updateUser = exports.deleteUser = exports.loginUser = exports.regUser = exports.getOneUser = exports.getAllUsers = void 0;
 const schema_1 = require("../config/schema");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
@@ -26,6 +26,7 @@ const getAllUsers = async (req, res) => {
         });
     }
 };
+exports.getAllUsers = getAllUsers;
 //get one user by id
 const getOneUser = async (req, res) => {
     try {
@@ -50,6 +51,7 @@ const getOneUser = async (req, res) => {
         });
     }
 };
+exports.getOneUser = getOneUser;
 //create user
 const regUser = async (req, res) => {
     try {
@@ -98,6 +100,7 @@ const regUser = async (req, res) => {
         return res.status(500).json({ message: "Internal server error" });
     }
 };
+exports.regUser = regUser;
 // Login user
 const loginUser = async (req, res) => {
     try {
@@ -135,6 +138,7 @@ const loginUser = async (req, res) => {
         });
     }
 };
+exports.loginUser = loginUser;
 // Delete user
 const deleteUser = async (req, res) => {
     try {
@@ -233,5 +237,3 @@ const updateUser = async (req, res) => {
     }
 };
 exports.updateUser = updateUser;
-const userController = { getAllUsers, getOneUser, regUser, loginUser, deleteUser: exports.deleteUser, updateUser: exports.updateUser };
-exports.default = userController;

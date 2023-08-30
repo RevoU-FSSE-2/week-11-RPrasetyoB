@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteTask = void 0;
+exports.deleteTask = exports.getOneTask = exports.updateTask = exports.getAllTask = exports.createTask = void 0;
 const schema_1 = require("../config/schema");
 const getAllTask = async (req, res) => {
     try {
@@ -13,12 +13,13 @@ const getAllTask = async (req, res) => {
     }
     catch (error) {
         console.log(error);
-        return res.sendStatus(400).json({
+        return res.status(400).json({
             success: false,
             message: "failed to get transfer's data"
         });
     }
 };
+exports.getAllTask = getAllTask;
 const getOneTask = async (req, res) => {
     try {
         const { id } = req.params;
@@ -36,12 +37,13 @@ const getOneTask = async (req, res) => {
     }
     catch (error) {
         console.log(error);
-        return res.sendStatus(400).json({
+        return res.status(400).json({
             success: false,
             message: "Internal server erro while get Transfer data or TransferId wrong format"
         });
     }
 };
+exports.getOneTask = getOneTask;
 const createTask = async (req, res) => {
     try {
         const { task } = req.body;
@@ -57,6 +59,7 @@ const createTask = async (req, res) => {
         return res.status(500).json({ message: error });
     }
 };
+exports.createTask = createTask;
 const updateTask = async (req, res) => {
     try {
         const { id } = req.params;
@@ -99,13 +102,14 @@ const updateTask = async (req, res) => {
         }
     }
     catch (err) {
-        console.error('Error updating status:', err);
+        console.log('Error updating status:', err);
         return res.status(500).json({
             success: false,
             message: 'An error occurred while updating the status or TransferId wrong format'
         });
     }
 };
+exports.updateTask = updateTask;
 const deleteTask = async (req, res) => {
     try {
         const { id } = req.params;
@@ -125,7 +129,7 @@ const deleteTask = async (req, res) => {
         }
     }
     catch (err) {
-        console.error('Error soft deleting transfer:', err);
+        console.log('Error soft deleting transfer:', err);
         return res.status(500).json({
             success: false,
             message: 'An error occurred while soft deleting transfer data or TransferId wrong format'
@@ -133,5 +137,3 @@ const deleteTask = async (req, res) => {
     }
 };
 exports.deleteTask = deleteTask;
-const taskController = { createTask, getAllTask, updateTask, getOneTask, deleteTask: exports.deleteTask };
-exports.default = taskController;

@@ -15,7 +15,7 @@ const getAllTask = async (req: Request, res: Response) => {
         });
     } catch (error) {
         console.log(error);
-        return res.sendStatus(400).json({
+        return res.status(400).json({
           success: false,
           message: "failed to get transfer's data"
         });
@@ -39,7 +39,7 @@ const getOneTask = async (req: Request, res: Response) => {
       });
     } catch (error) {
       console.log(error);
-      return res.sendStatus(400).json({
+      return res.status(400).json({
         success: false,
         message: "Internal server erro while get Transfer data or TransferId wrong format"
       });
@@ -102,7 +102,7 @@ const updateTask = async (req: Request, res: Response) => {
         });
       }
     } catch (err) {
-      console.error('Error updating status:', err);
+      console.log('Error updating status:', err);
       return res.status(500).json({
         success: false,
         message: 'An error occurred while updating the status or TransferId wrong format'
@@ -110,7 +110,7 @@ const updateTask = async (req: Request, res: Response) => {
     }
   };
 
-export const deleteTask = async (req: Request, res: Response) => {
+const deleteTask = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
 
@@ -129,7 +129,7 @@ export const deleteTask = async (req: Request, res: Response) => {
             });
         }
     } catch (err) {
-        console.error('Error soft deleting transfer:', err);
+        console.log('Error soft deleting transfer:', err);
         return res.status(500).json({
             success: false,
             message: 'An error occurred while soft deleting transfer data or TransferId wrong format'
@@ -138,5 +138,4 @@ export const deleteTask = async (req: Request, res: Response) => {
 };
 
 
-const taskController = { createTask, getAllTask, updateTask, getOneTask, deleteTask }
-export default taskController
+export { createTask, getAllTask, updateTask, getOneTask, deleteTask }
