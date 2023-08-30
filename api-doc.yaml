@@ -1,7 +1,20 @@
 openapi: 3.0.0
 info:
   version: 1.0.0
-  title: milestone2
+  title: Project Milestone 2
+  description: Task manager webs app
+servers:
+  - url: https://week11-rpb.up.railway.app
+    description: 'production server'
+  - url: http://localhost:4000
+    description: 'Development server'
+components:
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'Bearer with JWT Token'
 paths:
   /v1/auth/login:
     post:
@@ -15,6 +28,9 @@ paths:
                   type: string
                 password:
                   type: string
+            example:
+              username: rpb
+              password: manager123
       responses:
         '200':
           description: Successful response
@@ -36,13 +52,19 @@ paths:
                   type: string
                 role:
                   type: string
+            example:
+              username: aaaaa
+              password: aaaa1111
+              role: employee
       responses:
         '200':
           description: Successful response
         '400':
-          description: Bad Request
+          description: Wrong input requirement
   /v1/users:
     get:
+      summary: get all user
+      parameters: []
       responses:
         '200':
           description: Successful response
@@ -50,6 +72,7 @@ paths:
           description: Internal Server Error
   /v1/users/{userId}:
     get:
+      summary: get one user
       parameters:
         - name: userId
           in: path
@@ -64,6 +87,7 @@ paths:
         '500':
           description: Internal Server Error
     delete:
+      summary: delete one user
       parameters:
         - name: userId
           in: path
@@ -78,6 +102,7 @@ paths:
         '500':
           description: Internal Server Error
     patch:
+      summary: update user
       parameters:
         - name: userId
           in: path
@@ -96,6 +121,10 @@ paths:
                   type: string
                 role:
                   type: string
+            example:
+              username: notnull
+              password: alphaNumeric1
+              role: employee
       responses:
         '200':
           description: Successful response
@@ -105,6 +134,10 @@ paths:
           description: Internal Server Error
   /v1/tasks:
     post:
+      summary: create new task
+      security:
+        - bearer_auth: []
+      parameters: []
       requestBody:
         content:
           application/json:
@@ -113,6 +146,8 @@ paths:
               properties:
                 task:
                   type: string
+            example:
+              task: make weekly report
       responses:
         '200':
           description: Successful response
@@ -128,6 +163,9 @@ paths:
           description: Internal Server Error
   /v1/tasks/{taskId}:
     get:
+      summary: get one task
+      security:
+        - bearer_auth: []
       parameters:
         - name: taskId
           in: path
@@ -142,6 +180,9 @@ paths:
         '500':
           description: Internal Server Error
     patch:
+      summary: update task status
+      security:
+        - bearer_auth: []      
       parameters:
         - name: taskId
           in: path
@@ -156,6 +197,8 @@ paths:
               properties:
                 status:
                   type: string
+            example:
+              status: In progress
       responses:
         '200':
           description: Successful response
@@ -166,6 +209,9 @@ paths:
         '500':
           description: Internal Server Error
     delete:
+      summary: soft delete task
+      security:
+        - bearer_auth: []
       parameters:
         - name: taskId
           in: path
@@ -179,3 +225,9 @@ paths:
           description: Task not found
         '500':
           description: Internal Server Error
+  /:
+    get:
+      summary: Rest API home
+      responses:
+        '200':
+          description: Successful response
