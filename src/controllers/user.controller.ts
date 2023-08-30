@@ -17,7 +17,7 @@ const getAllUsers = async (req: Request, res: Response) => {
     });
   } catch (error) {
     console.log(error);
-    return res.sendStatus(400).json({
+    return res.status(400).json({
       success: false,
       message: "failed to get all users"
     });
@@ -41,7 +41,7 @@ const getOneUser = async (req: Request, res: Response) => {
         user: user,
       });
     } catch (err) {
-    console.error('Error get user:', err);
+    console.log('Error get user:', err);
     return res.status(500).json({
       success: false,
       message: 'An error occurred while get the user or userId wrong format'
@@ -137,7 +137,7 @@ const loginUser = async (req: Request, res: Response) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    console.log(error);
     return res.status(500).json({
       message: "Internal server error"
     });
@@ -164,8 +164,8 @@ const deleteUser = async (req: Request, res: Response) => {
             data: "Not found"
         })
     }
-  } catch (err) {
-    console.error('Error delete user:', err);
+  } catch (error) {
+    console.log('Error delete user:', error);
     return res.status(500).json({
         message: 'An error occurred while deleting the user or userId wrong format'
     });
@@ -189,7 +189,7 @@ const updateUser = async (req: Request, res: Response) => {
     
     const existingUser = await userModel.findOne({ username });
 
-    if (existingUser) {
+    if (existingUser && existingUser._id.toString() !== userId) {
       return res.status(409).json({
         success: false,
         message: "Username already exists"
@@ -203,26 +203,25 @@ const updateUser = async (req: Request, res: Response) => {
       });
     }
 
-    if (password.length < 8) {
+    if (password && password.length < 8) {
       return res.status(400).json({
         success: false,
         message: "Password must be at least 8 characters long"
       });
     }
 
-    if (!/(?=.*[a-zA-Z])(?=.*[0-9])/.test(password)) {
+    if (password && !/(?=.*[a-zA-Z])(?=.*[0-9])/.test(password)) {
       return res.status(400).json({
           success: false,
           message: "Password must contain both alphabetic and numeric characters"
       });
     }
 
-    if (updates.password) {
+    if (password) {
       updates.password = await bcrypt.hash(updates.password, 10);
     }
 
     const updatedUser = await userModel.findByIdAndUpdate(userId, updates, { new: true });
-    console.log(username)
 
     if (updatedUser) {
       return res.status(200).json({
@@ -230,8 +229,9 @@ const updateUser = async (req: Request, res: Response) => {
         message: 'User updated successfully',
         data: {
           _id: userId,
-          username, role,
-          passwordUpdated: !!password
+          username,
+          role,
+          passwordUpdated: !!password,
         }
       });
     } else {
@@ -241,8 +241,8 @@ const updateUser = async (req: Request, res: Response) => {
         data: 'Not found'
       });
     }
-  } catch (err) {
-    console.error('Error updating user:', err);
+  } catch (error) {
+    console.log('Error updating user:', error);
     return res.status(500).json({
       success: false,
       message: 'An error occurred while updating the user or userId wrong format'
