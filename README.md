@@ -19,7 +19,7 @@ Project milestone 2. build a task management website application that integrates
   "role": "manager" 
 }
 ```
-```
+```json
 {
   "username": "rpb2",
   "role": "employee",
