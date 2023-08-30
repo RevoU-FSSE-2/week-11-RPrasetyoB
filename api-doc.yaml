@@ -152,6 +152,8 @@ paths:
           description: Internal Server Error
     delete:
       summary: Delete one user
+      security:
+        - bearer_auth: []
       parameters:
         - name: userId
           in: path
@@ -167,6 +169,8 @@ paths:
           description: Internal Server Error
     patch:
       summary: Update user
+      security:
+        - bearer_auth: []
       parameters:
         - name: userId
           in: path
