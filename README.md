@@ -15,7 +15,7 @@ Project milestone 2. build a task management website application that integrates
 ```json
 {
   "username": "rpb",
-  "password": "manager123".
+  "password": "manager123",
   "role": "manager" 
 }
 ```
@@ -33,7 +33,7 @@ Project milestone 2. build a task management website application that integrates
 ## Request and Response example
 **Login user**
 - Request :
-```
+```json
 {
     "username" : "rpb6",
     "password" : "employee123",
@@ -41,7 +41,7 @@ Project milestone 2. build a task management website application that integrates
 }
 ```
 - Response :
-```
+```json
 {
     "success": true,
     "message": "Registration success",
