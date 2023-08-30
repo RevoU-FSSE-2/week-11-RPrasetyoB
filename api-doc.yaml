@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   version: 1.0.0
   title: Project Milestone 2
-  description: Task manager webs app
+  description: Task manager webs app with RESTful API
 servers:
   - url: https://week11-rpb.up.railway.app
     description: 'production server'
@@ -15,9 +15,72 @@ components:
       scheme: bearer
       bearerFormat: JWT
       description: 'Bearer with JWT Token'
+  schemas:
+    RegisterUser:
+      type: object
+      properties:
+        username:
+          type: string
+          default: jawir
+        password:
+          type: string
+          minLength: 8
+          default: alphanumeric1
+        role:
+          description: Possible values for roles are manager and employee.
+          type: string 
+          enum:
+            - manager
+            - employee
+          default: employee
+      required:
+        - username
+        - password
+        - role
+    LoginUser:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+    CreateTask:
+      type: object
+      properties:
+        task:
+          type: string 
+      required:
+        - task     
+    BadRequest:
+      type: object
+      properties:
+        success:
+          type: boolean
+          default: false
+        error:
+          type: string
+    InternalServerError:
+      type: object
+      properties:
+        error:
+          type: string
+    Unauthorized:
+      type: object
+      properties:
+        error:
+          type: string
+    NotFound:
+      type: object
+      properties:
+        success:
+          type: boolean 
+          default: false 
+        message:
+          type: string
 paths:
   /v1/auth/login:
     post:
+      summary: Login user
       requestBody:
         content:
           application/json:
@@ -40,6 +103,7 @@ paths:
           description: Unauthorized
   /v1/auth/register:
     post:
+      summary: Register user
       requestBody:
         content:
           application/json:
@@ -63,7 +127,7 @@ paths:
           description: Wrong input requirement
   /v1/users:
     get:
-      summary: get all user
+      summary: Get all user
       parameters: []
       responses:
         '200':
@@ -72,7 +136,7 @@ paths:
           description: Internal Server Error
   /v1/users/{userId}:
     get:
-      summary: get one user
+      summary: Get one user
       parameters:
         - name: userId
           in: path
@@ -87,7 +151,7 @@ paths:
         '500':
           description: Internal Server Error
     delete:
-      summary: delete one user
+      summary: Delete one user
       parameters:
         - name: userId
           in: path
@@ -102,7 +166,7 @@ paths:
         '500':
           description: Internal Server Error
     patch:
-      summary: update user
+      summary: Update user
       parameters:
         - name: userId
           in: path
@@ -134,7 +198,7 @@ paths:
           description: Internal Server Error
   /v1/tasks:
     post:
-      summary: create new task
+      summary: Create new task
       security:
         - bearer_auth: []
       parameters: []
@@ -156,6 +220,9 @@ paths:
         '500':
           description: Internal Server Error
     get:
+      summary: Get all tasks
+      security:
+        - bearer_auth: []
       responses:
         '200':
           description: Successful response
@@ -163,7 +230,7 @@ paths:
           description: Internal Server Error
   /v1/tasks/{taskId}:
     get:
-      summary: get one task
+      summary: Get one task
       security:
         - bearer_auth: []
       parameters:
@@ -180,7 +247,7 @@ paths:
         '500':
           description: Internal Server Error
     patch:
-      summary: update task status
+      summary: Update task status
       security:
         - bearer_auth: []      
       parameters:
@@ -209,7 +276,7 @@ paths:
         '500':
           description: Internal Server Error
     delete:
-      summary: soft delete task
+      summary: Soft delete task
       security:
         - bearer_auth: []
       parameters:
