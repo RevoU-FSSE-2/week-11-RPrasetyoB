@@ -30,7 +30,7 @@ Project milestone 2. build a task management website application that integrates
 ![milestone2 drawio (1)](https://github.com/RevoU-FSSE-2/week-11-RPrasetyoB/assets/129088807/0f662742-6e7f-450c-961a-6c3cd2248b47)
 
 ## Request and Response example
-**Login User**
+**Login user**
 - Request :
 ```
 {
@@ -52,6 +52,7 @@ Project milestone 2. build a task management website application that integrates
     }
 }
 ```
+**Register user**
 
 #### Download and import json file below to your postman: <br>
 https://drive.google.com/file/d/15GdqV8NM2q2T4VFQ0DdNHP9om45ijLpY/view?usp=sharing
