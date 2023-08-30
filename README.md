@@ -35,6 +35,25 @@ Project milestone 2. build a task management website application that integrates
 - Request :
 ```json
 {
+    "username":"rpb2",
+    "password":"employee123"
+}
+```
+- Response :
+```json
+{
+    "success": true,
+    "message": "User successfully logged in",
+    "user": "rpb2",
+    "role": "employee",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJwYjIiLCJpZCI6IjY0ZWRiMGNlNmI1ZTlhYjgxZjEzNmEzZCIsInJvbGUiOiJlbXBsb3llZSIsImlhdCI6MTY5MzQxMTIxMn0.Z6oVX55JS0U493cxCohupbJUAZT2jbBLXf4QH7XkpWI"
+}
+```
+
+**Register user**
+- Request :
+```json
+{
     "username" : "rpb6",
     "password" : "employee123",
     "role" : "employee"
@@ -53,7 +72,140 @@ Project milestone 2. build a task management website application that integrates
     }
 }
 ```
-**Register user**
+**Get all users**
+- Response :
+```json
+{
+    "success": true,
+    "message": "success get all user",
+    "user": [
+        {
+            "_id": "64edb05699aab4e52021ba75",
+            "username": "rpb",
+            "password": "$2b$10$cidUOTwdtYBctx0G5e/gYuivZsP4JybPSnnlf4xq7yzmuXb17o/bS",
+            "role": "manager"
+        },
+        {
+            "_id": "64edb0ce6b5e9ab81f136a3d",
+            "username": "rpb2",
+            "password": "$2b$10$SWTBka/7jcl2leaTXA68t.2OTSC9Mvk15eNgpHSWAVFC0sR208TDS",
+            "role": "employee"
+        }
+  ]
+}
+```
+**Get one user**
+- Response :
+```json
+{
+    "success": true,
+    "message": "success get user",
+    "user": {
+        "_id": "64ef6456b1de5bf3cfed5158",
+        "username": "rpb6",
+        "password": "$2b$10$o.48UV4ioacSdVsOc6GJj.ZVSS17yJDhgXFwXinDNAGCc7WrE.xle",
+        "role": "employee"
+    }
+}
+```
+
+**Get all tasks**
+- Response :
+```json
+{
+    "success": true,
+    "message": "success get all transfer's datas",
+    "user": [
+        {
+            "_id": "64edbc946b66591fe76c3442",
+            "task": "make daily report",
+            "status": "In review",
+            "createdAt": "2023-08-29T09:38:28.789Z",
+            "updatedAt": "2023-08-29T00:00:00.000Z"
+        },
+        {
+            "_id": "64edbf413bd73327cd795c20",
+            "task": "make meeting report",
+            "status": "Not started",
+            "createdAt": "2023-08-29T00:00:00.000Z",
+            "updatedAt": "2023-08-29T00:00:00.000Z"
+        }
+  ]
+}
+```
+
+**Get one task**
+- Response :
+```json
+{
+    "success": true,
+    "message": "success get transfer data",
+    "user": {
+        "_id": "64edbc946b66591fe76c3442",
+        "task": "make daily report",
+        "status": "In review",
+        "createdAt": "2023-08-29T09:38:28.789Z",
+        "updatedAt": "2023-08-29T00:00:00.000Z"
+    }
+}
+```
+
+**Create task**
+- Request :
+```json
+{
+    "task":"make weekly schedule"
+}
+```
+- Response :
+```json
+{
+    "success": true,
+    "message": "Task registration success",
+    "data": {
+        "task": "make weekly schedule",
+        "status": "Not started",
+        "_id": "64ef6a75b1de5bf3cfed5160",
+        "createdAt": "2023-08-30T00:00:00.000Z",
+        "updatedAt": "2023-08-30T00:00:00.000Z"
+    }
+}
+```
+
+**Update task**
+- Request :
+```json
+{
+    "status":"In progress"
+}
+```
+- Response :
+```json
+{
+    "success": true,
+    "message": "Successfully updated status",
+    "data": {
+        "status": "In progress"
+    }
+}
+```
+
+**Delete task**
+- Response :
+```json
+{
+    "success": true,
+    "message": "Task deleted successfully",
+    "data": {
+        "_id": "64ee0a2e305e086e0a7eb922",
+        "task": "make weekly schedule",
+        "status": "Not started",
+        "createdAt": "2023-08-29T00:00:00.000Z",
+        "updatedAt": "2023-08-30T00:00:00.000Z",
+        "isDeleted": true
+    }
+}
+```
 
 #### Download and import json file below to your postman: <br>
 https://drive.google.com/file/d/15GdqV8NM2q2T4VFQ0DdNHP9om45ijLpY/view?usp=sharing
