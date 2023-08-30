@@ -42,5 +42,4 @@ describe('loginUser', () => {
             token: 'mockToken'
         });
     });
-    // Other test cases for different scenarios (user not found, incorrect password, etc.)
 });
