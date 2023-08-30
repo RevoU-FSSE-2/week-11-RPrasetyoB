@@ -223,6 +223,10 @@ https://drive.google.com/file/d/15GdqV8NM2q2T4VFQ0DdNHP9om45ijLpY/view?usp=shari
 | **Update Task Status by ID**    | `PATCH`     | <b>/v1/tasks/:id</b>  | `manager and employee role` Request Params: `id: string`  Request Body: `status: string`                                                                                   |
 | **Softdelete Task by ID**           | `DELETE`    | <b>/v1/tasks/:id</b>  | `manager role`  Request Params: `id: string`                                                                                     |
 
+## Unit testing with JEST
+![Screenshot_1](https://github.com/RevoU-FSSE-2/week-11-RPrasetyoB/assets/129088807/dc5f9017-6e43-48b1-aa1c-3286ef6e7026)
+
+
 ## Deployment
 ### Back End Rest API: <br>
 https://week11-rpb.up.railway.app
