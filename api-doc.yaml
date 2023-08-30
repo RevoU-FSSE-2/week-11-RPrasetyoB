@@ -146,6 +146,8 @@ paths:
       responses:
         '200':
           description: Successful response
+        '400':
+          description: Wrong input format of UserId
         '404':
           description: User not found
         '500':

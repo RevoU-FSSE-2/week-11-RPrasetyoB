@@ -41,7 +41,7 @@ const getOneTask = async (req: Request, res: Response) => {
       console.log(error);
       return res.sendStatus(400).json({
         success: false,
-        message: "Internal server erro while get Transfer data"
+        message: "Internal server erro while get Transfer data or TransferId wrong format"
       });
     }
   };
@@ -105,7 +105,7 @@ const updateTask = async (req: Request, res: Response) => {
       console.error('Error updating status:', err);
       return res.status(500).json({
         success: false,
-        message: 'An error occurred while updating the status'
+        message: 'An error occurred while updating the status or TransferId wrong format'
       });
     }
   };
@@ -132,7 +132,7 @@ export const deleteTask = async (req: Request, res: Response) => {
         console.error('Error soft deleting transfer:', err);
         return res.status(500).json({
             success: false,
-            message: 'An error occurred while soft deleting transfer data'
+            message: 'An error occurred while soft deleting transfer data or TransferId wrong format'
         });
     }
 };

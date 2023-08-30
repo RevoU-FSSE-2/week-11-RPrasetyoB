@@ -40,14 +40,14 @@ const getOneUser = async (req: Request, res: Response) => {
         message: "success get user",
         user: user,
       });
-    } catch (error) {
-      console.log(error);
-      return res.sendStatus(400).json({
-        success: false,
-        message: "failed to get user"
-      });
-    }
-  };
+    } catch (err) {
+    console.error('Error get user:', err);
+    return res.status(500).json({
+      success: false,
+      message: 'An error occurred while get the user or userId wrong format'
+    });
+  }
+};
 
   //create user
   const regUser = async (req : Request, res: Response) => {
@@ -167,9 +167,9 @@ export const deleteUser = async (req: Request, res: Response) => {
         })
     }
   } catch (err) {
-    console.error('Error delete transaction:', err);
+    console.error('Error delete user:', err);
     return res.status(500).json({
-        message: 'An error occurred while deleting the user'
+        message: 'An error occurred while deleting the user or userId wrong format'
     });
   }
 };
@@ -247,7 +247,7 @@ export const updateUser = async (req: Request, res: Response) => {
     console.error('Error updating user:', err);
     return res.status(500).json({
       success: false,
-      message: 'An error occurred while updating the user'
+      message: 'An error occurred while updating the user or userId wrong format'
     });
   }
 };
