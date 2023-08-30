@@ -1,7 +1,7 @@
 import express from 'express'
 const userRoutes = express.Router()
 import { getAllUsers, getOneUser, regUser, loginUser, deleteUser, updateUser } from '../controllers/user.controller'
-import authMiddleware from '../midlewares/role.access'
+import authMiddleware from '../middlewares/role.access'
 
 
 userRoutes.get('/v1/users', getAllUsers)

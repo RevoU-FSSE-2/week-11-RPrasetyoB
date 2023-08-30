@@ -1,6 +1,6 @@
 import { Request, Response, json } from 'express';
 import { taskModel } from '../config/schema';
-import { authRole } from '../midlewares/role.access';
+import { authRole } from '../middlewares/role.access';
 
 
 

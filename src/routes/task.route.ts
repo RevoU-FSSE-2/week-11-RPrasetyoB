@@ -1,5 +1,5 @@
 import express from 'express'
-import authMiddleware from '../midlewares/role.access'
+import authMiddleware from '../middlewares/role.access'
 import { getAllTask, getOneTask, createTask, updateTask, deleteTask } from '../controllers/task.controller'
 
 const taskRoutes = express.Router()

@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const userRoutes = express_1.default.Router();
 const user_controller_1 = require("../controllers/user.controller");
-const role_access_1 = __importDefault(require("../midlewares/role.access"));
+const role_access_1 = __importDefault(require("../middlewares/role.access"));
 userRoutes.get('/v1/users', user_controller_1.getAllUsers);
 userRoutes.get('/v1/users/:id', user_controller_1.getOneUser);
 userRoutes.post('/v1/auth/register', user_controller_1.regUser);

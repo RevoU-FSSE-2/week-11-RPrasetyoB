@@ -1,7 +1,6 @@
 import express, { Request, Response, NextFunction} from 'express'
 import { JWT_Sign } from '../config/jwt'
 import jwt from "jsonwebtoken"
-import { log } from 'console'
 
 export const authRole = async (req: Request, res: Response, next: NextFunction) => {
     const authHeader = req.headers.authorization
