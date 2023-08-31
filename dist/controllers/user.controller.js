@@ -55,7 +55,7 @@ exports.getOneUser = getOneUser;
 //create user
 const regUser = async (req, res) => {
     try {
-        const { username, password, role } = req.body;
+        const { _id, username, password, role } = req.body;
         if (!username) {
             return res.status(400).json({
                 success: false,
@@ -88,7 +88,7 @@ const regUser = async (req, res) => {
             });
         }
         const hashedPass = await bcrypt_1.default.hash(password, 10);
-        const newUser = await schema_1.userModel.create({ username, password: hashedPass, role });
+        const newUser = await schema_1.userModel.create({ _id, username, password: hashedPass, role });
         return res.status(200).json({
             success: true,
             message: "Registration success",

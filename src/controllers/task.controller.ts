@@ -69,7 +69,7 @@ const updateTask = async (req: Request, res: Response) => {
       const { status } = req.body;
       const role = (req as any).role
       let validStatus: string[];
-        
+      console.log(role)
       if (role === 'manager') {
         validStatus = ['Not started', 'In progress', 'In review', 'Done / Approved', 'Need revision/ Rejected'];
       } else if (role === 'employee') {

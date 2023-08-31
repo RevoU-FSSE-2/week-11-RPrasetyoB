@@ -52,7 +52,7 @@ const getOneUser = async (req: Request, res: Response) => {
   //create user
 const regUser = async (req : Request, res: Response) => {
   try {
-    const { username, password, role } = req.body;
+    const { _id, username, password, role } = req.body;
     if (!username) {
       return res.status(400).json({
         success: false,
@@ -92,7 +92,7 @@ const regUser = async (req : Request, res: Response) => {
   
     const hashedPass = await bcrypt.hash(password, 10);
 
-    const newUser = await userModel.create({ username, password: hashedPass, role });
+    const newUser = await userModel.create({ _id, username, password: hashedPass, role });
     return res.status(200).json({
       success: true,
       message: "Registration success",

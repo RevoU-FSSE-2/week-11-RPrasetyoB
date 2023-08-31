@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const schema_1 = require("../../../config/schema");
-const task_controller_1 = require("../../../controllers/task.controller"); // Import the function you want to test
+const task_controller_1 = require("../../../controllers/task.controller");
 jest.mock('../../../config/schema'); // Mock the task model module
 describe('deleteTask', () => {
     it('should successfully delete a task', async () => {

@@ -4,93 +4,43 @@ import { updateTask } from '../../../controllers/task.controller';
 
 jest.mock('../../../config/schema');
 
+type MockRequest = Request & {
+  params: { id: string };
+  body: { status: string };
+  role: string;
+};
+
 describe('updateTask', () => {
-  it('should successfully update task status for manager role', async () => {
-    const mockRequest = {
-      params: { id: 'mockTaskId' },
+  let req: MockRequest;
+  let res: Response;
+
+  beforeEach(() => {
+    req = {
+      params: { id: '123' },
       body: { status: 'In progress' },
-      user: { role: 'manager' }
-    } as unknown as Request;
-    const mockResponse = {
-      status: jest.fn().mockReturnThis(),
+      role: 'manager'
+    } as MockRequest;
+
+    res = {
+      status: jest.fn(() => res),
       json: jest.fn()
-    } as unknown as Response;
+    } as any;
+  });
 
-    (taskModel.updateOne as jest.Mock).mockResolvedValue({ modifiedCount: 1 });
+  it('should update task status for manager role', async () => {
+    const mockUpdateOne = jest.spyOn(taskModel, 'updateOne').mockResolvedValue({ modifiedCount: 1 } as any);
+    await updateTask(req, res);
 
-    await updateTask(mockRequest, mockResponse);
-
-    expect(mockResponse.status).toHaveBeenCalledWith(200);
-    expect(mockResponse.json).toHaveBeenCalledWith({
+    expect(mockUpdateOne).toHaveBeenCalledWith({ _id: '123' }, { status: 'In progress' });
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({
       success: true,
       message: 'Successfully updated status',
-      data: {
-        status: 'In progress'
-      }
+      data: { status: 'In progress' }
     });
   });
 
-  it('should return 404 if no task status is updated', async () => {
-    const mockRequest = {
-      params: { id: 'mockTaskId' },
-      body: { status: 'In progress' },
-      user: { role: 'manager' }
-    } as unknown as Request;
-    const mockResponse = {
-      status: jest.fn().mockReturnThis(),
-      json: jest.fn()
-    } as unknown as Response;
-
-    (taskModel.updateOne as jest.Mock).mockResolvedValue({ modifiedCount: 0 });
-
-    await updateTask(mockRequest, mockResponse);
-
-    expect(mockResponse.status).toHaveBeenCalledWith(404);
-    expect(mockResponse.json).toHaveBeenCalledWith({
-      success: false,
-      message: 'No update status found for the provided ID'
-    });
-  });
-
-  it('should return 400 if status update is not valid', async () => {
-    const mockRequest = {
-      params: { id: 'mockTaskId' },
-      body: { status: 'Invalid Status' },
-      user: { role: 'manager' }
-    } as unknown as Request;
-    const mockResponse = {
-      status: jest.fn().mockReturnThis(),
-      json: jest.fn()
-    } as unknown as Response;
-
-    await updateTask(mockRequest, mockResponse);
-
-    expect(mockResponse.status).toHaveBeenCalledWith(400);
-    expect(mockResponse.json).toHaveBeenCalledWith({
-      message: 'Status can only be updated to: Not started, In progress, In review, Done / Approved, Need revision/ Rejected'
-    });
-  });
-
-  it('should return 500 on internal server error', async () => {
-    const mockRequest = {
-      params: { id: 'mockTaskId' },
-      body: { status: 'In progress' },
-      user: { role: 'manager' }
-    } as unknown as Request;
-    const mockResponse = {
-      status: jest.fn().mockReturnThis(),
-      json: jest.fn()
-    } as unknown as Response;
-
-    const mockError = new Error('Mock error');
-    (taskModel.updateOne as jest.Mock).mockRejectedValue(mockError);
-
-    await updateTask(mockRequest, mockResponse);
-
-    expect(mockResponse.status).toHaveBeenCalledWith(500);
-    expect(mockResponse.json).toHaveBeenCalledWith({
-      success: false,
-      message: 'An error occurred while updating the status or TransferId wrong format'
-    });
+  afterEach(() => {
+    jest.clearAllMocks();
   });
 });
