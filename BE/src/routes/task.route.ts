@@ -9,5 +9,4 @@ taskRoutes.post('/v1/tasks', managerAuth, createTask)
 taskRoutes.patch('/v1/tasks/:id', authRole, updateTask)
 taskRoutes.delete('/v1/tasks/:id', managerAuth, deleteTask)
 
-
 export default taskRoutes
