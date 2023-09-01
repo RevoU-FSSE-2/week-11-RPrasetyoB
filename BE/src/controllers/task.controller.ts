@@ -67,20 +67,7 @@ const updateTask = async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
       const { status } = req.body;
-      const role = (req as any).role
-      let validStatus: string[];
-      console.log(role)
-      if (role === 'manager') {
-        validStatus = ['Not started', 'In progress', 'In review', 'Done / Approved', 'Need revision/ Rejected'];
-      } else if (role === 'employee') {
-        validStatus = ['Not started', 'In progress', 'In review'];
-      } else {
-        return res.status(400).json({
-          message: 'Invalid role provided'
-        });
-      }
-  
-      if (validStatus.includes(status)) {
+      
         const updatedStatus = await taskModel.updateOne({ _id: id }, { status: status });
   
         if (updatedStatus.modifiedCount > 0) {
@@ -97,11 +84,6 @@ const updateTask = async (req: Request, res: Response) => {
             message: 'No update status found for the provided ID'
           });
         }
-      } else {
-        return res.status(400).json({
-          message: `Status can only be updated to: ${validStatus.join(', ')}`
-        });
-      }
     } catch (err) {
       console.log('Error updating status:', err);
       return res.status(500).json({
