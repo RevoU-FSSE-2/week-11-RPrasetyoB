@@ -28,7 +28,8 @@ Project milestone 2. build a task management website application that integrates
 ```
 
 ## Project diagram <br>
-![milestone2 drawio (2)](https://github.com/RevoU-FSSE-2/week-11-RPrasetyoB/assets/129088807/d526d363-e261-4b27-9237-621b423025a3)
+![milestone2 drawio (3)](https://github.com/RevoU-FSSE-2/week-11-RPrasetyoB/assets/129088807/b299620b-11b9-4ad8-96ab-ed69000f006b)
+
 
 ## Request and Response example
 **Login user**
